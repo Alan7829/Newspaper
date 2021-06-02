@@ -21,11 +21,6 @@ class CreateNewsTable extends Migration
             $table->date('pub_date');
             $table->date('cr_date');
             $table->date('mod_date');
-            $table->unsignedBigInteger('comments_id');
-            $table->unsignedBigInteger('categories_id');
-            $table->foreign('comments_id')->references('id')->on('comments');
-            $table->foreign('categories_id')->references('id')->on('categories');
-
             $table->timestamps();
         });
     }

@@ -18,6 +18,8 @@ class CreateCommentsTable extends Migration
             $table->string('author');
             $table->string('email');
             $table->string('message');
+            $table->unsignedBigInteger('news_id');
+            $table->foreign('news_id')->references('id')->on('news');
             $table->timestamps();
         });
     }
