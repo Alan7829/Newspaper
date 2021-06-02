@@ -19,8 +19,8 @@ class CreateNewsTable extends Migration
             $table->string('description');
             $table->string('author');
             $table->date('pub_date');
-            $table->date('cr_date');
-            $table->date('mod_date');
+            $table->boolean('pub_status');
+            $table->string('section');
             $table->timestamps();
         });
     }
