@@ -8,7 +8,10 @@
         </div>
         <div class="form-group">
             {{ Form::label('Id padre') }}
-            {{ Form::text('parent_id', $category->parent_id, ['class' => 'form-control' . ($errors->has('parent_id') ? ' is-invalid' : ''), 'placeholder' => 'Id padre']) }}
+            {{ Form::select(
+                'parent_id',
+                $parent_categories,
+                ['class' => 'custom-select' . ($errors->has('parent_id') ? ' is-invalid' : ''), 'placeholder' => 'Id padre']) }}
             {!! $errors->first('parent_id', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 
