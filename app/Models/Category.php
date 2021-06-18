@@ -19,10 +19,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Category extends Model
 {
-    
+
     static $rules = [
 		'name' => 'required',
-		'parent_id' => 'required',
+		'parent_id' => 'numeric',
     ];
 
     protected $perPage = 20;
@@ -42,6 +42,6 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\NewsHasCategory', 'categories_id', 'id');
     }
-    
+
 
 }

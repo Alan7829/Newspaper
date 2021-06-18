@@ -30,7 +30,10 @@ class CategoryController extends Controller
     public function create()
     {
         $category = new Category();
-        return view('admin.category.create', compact('category'));
+        $parent_categories = Category::pluck('name','id');
+        $default_select = ['Seleccione una opción'];
+        $parent_categories = array_merge($default_select, $parent_categories->toArray());
+        return view('admin.category.create', compact('category', 'parent_categories'));
     }
 
     /**
@@ -59,7 +62,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        return view('category.show', compact('category'));
+        return view('admin.category.show', compact('category'));
     }
 
     /**
@@ -72,7 +75,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        return view('category.edit', compact('category'));
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -88,7 +91,7 @@ class CategoryController extends Controller
 
         $category->update($request->all());
 
-        return redirect()->route('categories.index')
+        return redirect()->route('admin.category.index')
             ->with('success', 'Category updated successfully');
     }
 
@@ -101,7 +104,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id)->delete();
 
-        return redirect()->route('categories.index')
+        return redirect()->route('admin.category.index')
             ->with('success', 'Category deleted successfully');
     }
 }
