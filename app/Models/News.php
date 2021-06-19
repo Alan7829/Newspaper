@@ -2,22 +2,63 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class News
+ *
+ * @property $id
+ * @property $name
+ * @property $description
+ * @property $author
+ * @property $pub_date
+ * @property $pub_status
+ * @property $section
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @property Comment[] $comments
+ * @property NewsHasCategory[] $newsHasCategories
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class News extends Model
 {
-    use HasFactory;
+    
+    static $rules = [
+		'name' => 'required',
+		'description' => 'required',
+		'author' => 'required',
+		'pub_date' => 'required',
+		'pub_status' => 'required',
+		'section' => 'required',
+    ];
 
-    protected $fillable = ['id', 'name', 'description', 'author', 'pub_date', 'pub_status', 'section', 'created_at', 'updated_at'];
+    protected $perPage = 20;
 
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class, 'news_has_categories', 'news_id','categories_id');
-    }
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name','description','author','pub_date','pub_status','section'];
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany('App\Models\Comment', 'news_id', 'id');
     }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function newsHasCategories()
+    {
+        return $this->hasMany('App\Models\NewsHasCategory', 'news_id', 'id');
+    }
+    
+
 }

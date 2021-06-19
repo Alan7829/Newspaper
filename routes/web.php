@@ -26,4 +26,5 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('/categories', App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('/comments', App\Http\Controllers\Admin\CommentController::class);
+    Route::resource('/news', App\Http\Controllers\Admin\NewsController::class);
 });
