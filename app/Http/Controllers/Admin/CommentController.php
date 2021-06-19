@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
+/**
+ * Class CommentController
+ * @package App\Http\Controllers
+ */
 class CommentController extends Controller
 {
     /**
@@ -14,8 +19,10 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.comment.index');
+        $comments = Comment::paginate();
+
+        return view('admin.comment.index', compact('comments'))
+            ->with('i', (request()->input('page', 1) - 1) * $comments->perPage());
     }
 
     /**
@@ -25,63 +32,79 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.comment.create');
+        $comment = new Comment();
+        return view('admin.comment.create', compact('comment'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        request()->validate(Comment::$rules);
+
+        $comment = Comment::create($request->all());
+
+        return redirect()->route('comments.index')
+            ->with('success', 'Comentario creado correctamente');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $comment = Comment::find($id);
+
+        return view('admin.comment.show', compact('comment'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::find($id);
+
+        return view('admin.comment.edit', compact('comment'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        request()->validate(Comment::$rules);
+
+        $comment->update($request->all());
+
+        return redirect()->route('comments.index')
+            ->with('success', 'Comentario editado correctamente.');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id)->delete();
+
+        return redirect()->route('comments.index')
+            ->with('success', 'Comentario eliminado correctamente.');
     }
 }
