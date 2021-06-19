@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $category = Category::create($request->all());
 
         return redirect()->route('categories.index')
-            ->with('success', 'Category created successfully.');
+            ->with('success', 'Categoría creada correctamente.');
     }
 
     /**
@@ -92,7 +92,7 @@ class CategoryController extends Controller
         $category->update($request->all());
 
         return redirect()->route('admin.category.index')
-            ->with('success', 'Category updated successfully');
+            ->with('success', 'Categoría editada correctamente.');
     }
 
     /**
@@ -105,6 +105,6 @@ class CategoryController extends Controller
         $category = Category::find($id)->delete();
 
         return redirect()->route('admin.category.index')
-            ->with('success', 'Category deleted successfully');
+            ->with('success', 'Categoría eliminada correctamente');
     }
 }
