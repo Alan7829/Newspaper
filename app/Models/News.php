@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class News extends Model
 {
-    
+
     static $rules = [
 		'name' => 'required',
 		'description' => 'required',
@@ -49,16 +49,14 @@ class News extends Model
      */
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment', 'news_id', 'id');
+        return $this->hasMany(Comment::class, 'comment_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function newsHasCategories()
+    public function category()
     {
-        return $this->hasMany('App\Models\NewsHasCategory', 'news_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
-    
-
 }

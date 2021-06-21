@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Comment extends Model
 {
-    
+
     static $rules = [
 		'author' => 'required',
 		'email' => 'required',
@@ -42,10 +42,8 @@ class Comment extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function news()
+    public function article()
     {
-        return $this->hasOne('App\Models\News', 'id', 'news_id');
+        return $this->belongsTo(News::class, 'news_id');
     }
-    
-
 }

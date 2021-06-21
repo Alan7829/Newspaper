@@ -38,10 +38,16 @@ class Category extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function newsHasCategories()
+    public function articles()
     {
-        return $this->hasMany('App\Models\NewsHasCategory', 'categories_id', 'id');
+        return $this->hasMany(News::class, 'news_id');
     }
 
+    public function child_categories(){
+      return $this->hasMany(Category::class, 'parent_id');
+    }
 
+    public function parent_category(){
+      return $this->belongsTo(Category::class, 'parent_id');
+    }
 }
