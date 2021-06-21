@@ -28,8 +28,9 @@
                                 {{ $category->name }}
                             </div>
                             <div class="form-group">
-                                <strong>Id padre:</strong>
-                                {{ $category->parent_id }}
+                                <strong>Categoría padre:</strong>
+                                <td>{{ isset($category->parent_category->name) ? $category->parent_category->name : 'N/A' }}
+                                </td>
                             </div>
 
                         </div>

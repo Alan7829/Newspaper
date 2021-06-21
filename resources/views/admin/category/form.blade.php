@@ -7,12 +7,15 @@
             {!! $errors->first('name', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Id padre') }}
-            {{ Form::select(
-                'parent_id',
-                $parent_categories,
-                ['class' => 'custom-select' . ($errors->has('parent_id') ? ' is-invalid' : ''), 'placeholder' => 'Id padre']) }}
-            {!! $errors->first('parent_id', '<div class="invalid-feedback">:message</p>') !!}
+            @if (isset($category->parent_category))
+                {{ Form::label('Categoría padre') }}
+                {{ Form::select('parent_id', $parent_categories, $category->parent_category->id, ['class' => 'custom-select' . ($errors->has('parent_id') ? ' is-invalid' : ''), 'placeholder' => 'Categoría padre']) }}
+                {!! $errors->first('parent_id', '<div class="invalid-feedback">:message</p>') !!}
+            @else
+                {{ Form::label('Categoría padre') }}
+                {{ Form::select('parent_id', $parent_categories, ['class' => 'custom-select' . ($errors->has('parent_id') ? ' is-invalid' : ''), 'placeholder' => 'Categoría padre']) }}
+                {!! $errors->first('parent_id', '<div class="invalid-feedback">:message</p>') !!}
+            @endif
         </div>
 
     </div>

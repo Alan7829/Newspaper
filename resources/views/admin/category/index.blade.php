@@ -34,7 +34,7 @@
                                         <th>No</th>
 
 										<th>Nombre</th>
-										<th>Id padre</th>
+										<th>Categoría padre</th>
 
                                         <th></th>
                                     </tr>
@@ -45,7 +45,7 @@
                                             <td>{{ ++$i }}</td>
 
 											<td>{{ $category->name }}</td>
-											<td>{{ $category->parent_id }}</td>
+											<td>{{ isset($category->parent_category->name) ? $category->parent_category->name : 'N/A' }}</td>
 
                                             <td>
                                                 <form action="{{ route('categories.destroy',$category->id) }}" method="POST">
