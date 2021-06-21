@@ -30,7 +30,7 @@ class CategoryController extends Controller
     public function create()
     {
         $category = new Category();
-        $parent_categories = Category::pluck('name','id');
+        $parent_categories = Category::pluck('name', 'id');
         $default_select = ['Seleccione una opción'];
         $parent_categories = array_merge($default_select, $parent_categories->toArray());
         return view('admin.category.create', compact('category', 'parent_categories'));
@@ -74,8 +74,11 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
+        $parent_categories = Category::pluck('name', 'id');
+        $default_select = ['Seleccione una opción'];
+        $parent_categories = array_merge($default_select, $parent_categories->toArray());
 
-        return view('admin.category.edit', compact('category'));
+        return view('admin.category.edit', compact('category', 'parent_categories'));
     }
 
     /**
