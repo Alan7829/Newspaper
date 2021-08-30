@@ -94,7 +94,7 @@ class CategoryController extends Controller
 
         $category->update($request->all());
 
-        return redirect()->route('admin.category.index')
+        return redirect()->route('categories.index')
             ->with('success', 'Categoría editada correctamente.');
     }
 
@@ -105,9 +105,15 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id)->delete();
-
-        return redirect()->route('admin.category.index')
+        $catg = Category::where('id',$id)->first();
+        if($catg != null){
+            $catg->delete();
+            return redirect()->route('categories.index')
             ->with('success', 'Categoría eliminada correctamente');
+        }
+        // $category = Category::find($id)->delete();
+
+        return redirect()->route('categories.index')
+            ->with('danger', 'Categoría inexistente');
     }
 }
