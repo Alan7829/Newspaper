@@ -16,11 +16,19 @@
             {{ Form::text('message', $comment->message, ['class' => 'form-control' . ($errors->has('message') ? ' is-invalid' : ''), 'placeholder' => 'Mensaje']) }}
             {!! $errors->first('message', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-        <div class="form-group">
-            {{ Form::label('Id noticia') }}
-            {{ Form::text('news_id', $comment->news_id, ['class' => 'form-control' . ($errors->has('news_id') ? ' is-invalid' : ''), 'placeholder' => 'Id noticia']) }}
-            {!! $errors->first('news_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
+        @if (isset($comment->article))
+            <div class="form-group">
+                {{ Form::label('Noticia') }}
+                {{ Form::select('news_id', $news, $comment->article->id, ['class' => 'custom-select' . ($errors->has('news_id') ? ' is-invalid' : '')]) }}
+                {!! $errors->first('news_id', '<div class="invalid-feedback">:message</p>') !!}
+            </div>
+        @else
+            <div class="form-group">
+                {{ Form::label('Noticia') }}
+                {{ Form::select('news_id', $news, ['class' => 'custom-select' . ($errors->has('news_id') ? ' is-invalid' : '')]) }}
+                {!! $errors->first('news_id', '<div class="invalid-feedback">:message</p>') !!}
+            </div>
+        @endif
 
     </div>
     <div class="box-footer mt20">

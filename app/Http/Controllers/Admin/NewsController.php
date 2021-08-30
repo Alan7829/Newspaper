@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 
 use App\Models\News;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 
 /**
@@ -19,10 +22,10 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::paginate();
+        $articles = News::paginate();
 
-        return view('admin.news.index', compact('news'))
-            ->with('i', (request()->input('page', 1) - 1) * $news->perPage());
+        return view('admin.news.index', compact('articles'))
+            ->with('i', (request()->input('page', 1) - 1) * $articles->perPage());
     }
 
     /**
@@ -33,7 +36,18 @@ class NewsController extends Controller
     public function create()
     {
         $news = new News();
-        return view('admin.news.create', compact('news'));
+        $categories = array();
+        $default_select = ['Seleccione una opción'];
+
+        $news_category = Category::where('name', 'News')->first();
+        if (!empty($news_category)) {
+            $categories = Category::where('parent_id', $news_category->id)->pluck('name', 'id');
+            $categories = array_merge($default_select, $categories->toArray());
+        } else {
+            $categories = $default_select;
+        }
+
+        return view('admin.news.create', compact('news', 'categories'));
     }
 
     /**
@@ -74,8 +88,18 @@ class NewsController extends Controller
     public function edit($id)
     {
         $news = News::find($id);
+        $categories = array();
+        $default_select = ['Seleccione una opción'];
 
-        return view('admin.news.edit', compact('news'));
+        $news_category = Category::where('name', 'News')->first();
+        if (!empty($news_category)) {
+            $categories = Category::where('parent_id', $news_category->id)->pluck('name', 'id');
+            $categories = array_merge($default_select, $categories->toArray());
+        } else {
+            $categories = $default_select;
+        }
+
+        return view('admin.news.edit', compact('news', 'categories'));
     }
 
     /**

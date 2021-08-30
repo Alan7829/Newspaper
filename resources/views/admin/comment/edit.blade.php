@@ -22,7 +22,7 @@
                                 {{ method_field('PATCH') }}
                                 @csrf
 
-                                @include('comment.form')
+                                @include('admin.comment.form')
 
                             </form>
                         </div>

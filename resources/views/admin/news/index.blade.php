@@ -33,6 +33,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nombre</th>
+                                        <th>Categoría</th>
                                         <th>Descripción</th>
                                         <th>Autor</th>
                                         <th>Fecha de publicación</th>
@@ -43,15 +44,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($news as $news)
+                                    @foreach ($articles as $news)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
                                             <td>{{ $news->name }}</td>
+                                            <td>{{ isset($news->category->name) ? $news->category->name : '' }}</td>
                                             <td>{{ $news->description }}</td>
                                             <td>{{ $news->author }}</td>
                                             <td>{{ $news->pub_date }}</td>
-                                            <td>{{ $news->pub_status }}</td>
+                                            <td>{{ $news->pub_status ? 'Publicado' : 'No publicado' }}</td>
                                             <td>{{ $news->section }}</td>
 
                                             <td>
@@ -75,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $news->links() !!}
+                {!! $articles->links() !!}
             </div>
         </div>
     </div>

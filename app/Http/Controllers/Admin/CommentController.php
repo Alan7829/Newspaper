@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 /**
@@ -33,7 +34,17 @@ class CommentController extends Controller
     public function create()
     {
         $comment = new Comment();
-        return view('admin.comment.create', compact('comment'));
+        $news = array();
+        $default_select = ['Seleccione una opción'];
+
+        $news = News::pluck('name', 'id');
+        if (!empty($news)) {
+            $news = array_merge($default_select, $news->toArray());
+        } else {
+            $news = $default_select;
+        }
+
+        return view('admin.comment.create', compact('comment', 'news'));
     }
 
     /**
@@ -74,8 +85,17 @@ class CommentController extends Controller
     public function edit($id)
     {
         $comment = Comment::find($id);
+        $news = array();
+        $default_select = ['Seleccione una opción'];
 
-        return view('admin.comment.edit', compact('comment'));
+        $news = News::pluck('name', 'id');
+        if (!empty($news)) {
+            $news = array_merge($default_select, $news->toArray());
+        } else {
+            $news = $default_select;
+        }
+
+        return view('admin.comment.edit', compact('comment', 'news'));
     }
 
     /**

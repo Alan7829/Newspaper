@@ -34,7 +34,7 @@
                                         <th>Autor</th>
                                         <th>Email</th>
                                         <th>Mensaje</th>
-                                        <th>Id noticia</th>
+                                        <th>Noticia</th>
 
                                         <th></th>
                                     </tr>
@@ -47,7 +47,7 @@
                                             <td>{{ $comment->author }}</td>
                                             <td>{{ $comment->email }}</td>
                                             <td>{{ $comment->message }}</td>
-                                            <td>{{ $comment->news_id }}</td>
+                                            <td>{{ isset($comment->article->name) ? $comment->article->name : ''}}</td>
 
                                             <td>
                                                 <form action="{{ route('comments.destroy', $comment->id) }}"

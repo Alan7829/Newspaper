@@ -1,9 +1,9 @@
 @extends('admin.layouts.template')
 @section('content')
-    .<div class="container-fluid">
+    <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">{{ $category->name ?? 'Show Category' }}</h1>
+            <h1 class="h3 mb-0 text-gray-800">{{ $comment->message ?? 'Ver comentario' }}</h1>
             {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
         </div>
         <!-- Content Row -->
@@ -36,8 +36,8 @@
                                 {{ $comment->message }}
                             </div>
                             <div class="form-group">
-                                <strong>Id noticia:</strong>
-                                {{ $comment->news_id }}
+                                <strong>Noticia:</strong>
+                                {{ isset($comment->article->name) ? $comment->article->name : '' }}
                             </div>
 
                         </div>

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property $id
  * @property $name
+ * @property $category_id
  * @property $description
  * @property $author
  * @property $pub_date
@@ -26,12 +27,13 @@ class News extends Model
 {
 
     static $rules = [
-		'name' => 'required',
-		'description' => 'required',
-		'author' => 'required',
-		'pub_date' => 'required',
-		'pub_status' => 'required',
-		'section' => 'required',
+        'name' => 'required',
+        'category_id' => 'required',
+        'description' => 'required',
+        'author' => 'required',
+        'pub_date' => 'required',
+        'pub_status' => 'required',
+        'section' => 'required',
     ];
 
     protected $perPage = 20;
@@ -41,7 +43,7 @@ class News extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','description','author','pub_date','pub_status','section'];
+    protected $fillable = ['name', 'category_id', 'description', 'author', 'pub_date', 'pub_status', 'section'];
 
 
     /**
