@@ -51,7 +51,8 @@ class News extends Model
      */
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'comment_id');
+        //return $this->hasMany(Comment::class, 'comment_id'); // aqui está mal tu relacion
+        return $this->hasMany(Comment::class, 'news_id');
     }
 
     /**
