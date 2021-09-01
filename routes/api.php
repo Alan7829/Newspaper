@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('article/{article_id}/comments', [CommentController::class, 'getArticleComments']);
+Route::patch('comments/{comment_id}/ban', [CommentController::class, 'banComment']);
+Route::patch('comments/{comment_id}/unban', [CommentController::class, 'unbanComment']);
