@@ -69,7 +69,6 @@
                         <h6 class="collapse-header">CRUDS:</h6>
                         <a class="collapse-item" href="{{ route('categories.index') }}">Categorías</a>
                         <a class="collapse-item" href="{{ route('news.index') }}">Noticias</a>
-                        <a class="collapse-item" href="{{ route('comments.index') }}">Comentarios</a>
                     </div>
                 </div>
             </li>
@@ -301,6 +300,8 @@
     <!-- Page level custom scripts -->
     <script src={{ asset('js/demo/chart-area-demo.js') }}></script>
     <script src={{ asset('js/demo/chart-pie-demo.js') }}></script>
+
+    @yield('scripts');
 
 </body>
 
