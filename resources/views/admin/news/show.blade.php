@@ -17,6 +17,9 @@
                                 <span class="card-title">Ver Noticia</span>
                             </div>
                             <div class="float-right">
+                                @include('admin.news.comments_modal', [
+                                    'article' => $news
+                                ]);
                                 <a class="btn btn-primary" href="{{ route('news.index') }}"> Regresar</a>
                             </div>
                         </div>
