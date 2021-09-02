@@ -7,7 +7,7 @@
         </div>
         <!-- Content Row -->
         <section class="content container-fluid">
-            <div class="">
+            <div class="___class_+?4___">
                 <div class="col-md-12">
 
                     @includeif('partials.errors')
@@ -15,6 +15,11 @@
                     <div class="card card-default">
                         <div class="card-header">
                             <span class="card-title">Editar noticia</span>
+                            <div class="float-right">
+                                @include('admin.news.comments-modal', [
+                                'article' => $news
+                                ])
+                            </div>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('news.update', $news->id) }}" role="form"
