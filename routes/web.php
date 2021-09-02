@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('site.welcome');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('site.index');
 
 Auth::routes();
 
