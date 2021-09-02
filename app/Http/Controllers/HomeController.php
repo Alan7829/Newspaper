@@ -26,9 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::all('name', 'News');
-        $articles = News::where('pub_status', 1)->orderBy('id', 'DESC')->take(6)->get();
 
-        return view('site.index', compact('categories', 'articles'));
     }
 }
