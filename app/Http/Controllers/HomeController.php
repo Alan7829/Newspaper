@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\News;
+use SebastianBergmann\Environment\Console;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('site.welcome');
+        $categories = Category::all('name', 'News');
+        $articles = News::where('pub_status', 1)->orderBy('id', 'DESC')->take(6)->get();
+
+        return view('site.index', compact('categories', 'articles'));
     }
 }
