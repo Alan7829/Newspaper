@@ -89,16 +89,17 @@ class NewsController extends Controller
     {
         $news = News::find($id);
         $categories = array();
-        $default_select = ['Seleccione una opción'];
 
         $news_category = Category::where('name', 'News')->first();
+
         if (!empty($news_category)) {
             $categories = Category::where('parent_id', $news_category->id)->pluck('name', 'id');
-            $categories = array_merge($default_select, $categories->toArray());
+            $categories[0] = 'Seleccione una opción';
         } else {
-            $categories = $default_select;
+            $categories[0] = 'Seleccione una opción';
         }
 
+        /* dd($categories); */
         return view('admin.news.edit', compact('news', 'categories'));
     }
 
