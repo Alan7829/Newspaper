@@ -41,7 +41,9 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     @foreach ($categories as $category)
-                        <li class="list-inline-item text-primary">{{ $category->name }}</li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#{{ $category->name }}">{{ $category->name }}</a>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -54,7 +56,7 @@
             </p>
         </div>
     </header>
-    <!-- Portfolio Section-->
+    <!-- Last news Section-->
     <section class="page-section portfolio" id="portfolio">
         <div class="container">
             <!-- Portfolio Section Heading-->
@@ -68,73 +70,61 @@
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
                             <div class="card" style="width: 18rem;">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{$news->name}}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{$news->author}}</h6>
-                                    <p class="card-text">{{$news->description}}</p>
-                                    <a href="#" class="card-link">{{$news->category->name}}</a>
-                                    {{-- <a href="#" class="card-link">Another link</a> --}}
+                                    <h5 class="card-title">{{ $news->name }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ $news->author }}</h6>
+                                    <p class="card-text">{{ $news->description }}</p>
+                                    <a href="#" class="card-link">{{ $news->category->name }}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    </section>
+    <!-- Every categories -->
+    <div id="articles">
 
-            </div>
-        </div>
-    </section>
-    <!-- About Section-->
-    <section class="page-section bg-primary text-white mb-0" id="about">
-        <div class="container">
-            <!-- About Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom divider-light">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- About Section Content-->
-            <div class="row">
-                <div class="col-lg-4 ms-auto">
-                    <p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The
-                        download includes the complete source files including HTML, CSS, and JavaScript as well as
-                        optional SASS stylesheets for easy customization.</p>
+    </div>
+
+    {{-- @foreach ($categories as $category) --}}
+    {{-- <section class="page-section portfolio" id="{{ $category->name }}">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">{{ $category->name }}
+                </h2>
+                <br>
+                <!-- Portfolio Grid Items-->
+                <div class="row justify-content-center" id="{{ $category->name }}">
+                    <!-- Portfolio Item 1-->
+                    @foreach ($articles as $news)
+                        <div class="col-md-6 col-lg-4 mb-5">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal"
+                                data-bs-target="#portfolioModal1">
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $news->name }}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ $news->author }}</h6>
+                                        <p class="card-text">{{ $news->description }}</p>
+                                        <a href="#" class="card-link">{{ $news->category->name }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="col-lg-4 me-auto">
-                    <p class="lead">You can create your own custom avatar for the masthead, change the icon in
-                        the dividers, and add your email address to the contact form to make it fully functional!</p>
-                </div>
             </div>
-            <!-- About Section Button-->
-            <div class="text-center mt-4">
-                <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/theme/freelancer/">
-                    <i class="fas fa-download me-2"></i>
-                    Free Download!
-                </a>
-            </div>
-        </div>
-    </section>
+        </section> --}}
+    {{-- @endforeach --}}
+
     <!-- Contact Section-->
     <section class="page-section" id="contact">
         <div class="container">
             <!-- Contact Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
+            <h3 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h3>
             <!-- Contact Section Form-->
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-xl-7">
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- * * SB Forms Contact Form * *-->
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- This form is pre-integrated with SB Forms.-->
-                    <!-- To make this form functional, sign up at-->
-                    <!-- https://startbootstrap.com/solution/contact-forms-->
-                    <!-- to get an API token!-->
                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <!-- Name input-->
                         <div class="form-floating mb-3">
@@ -168,10 +158,6 @@
                             <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
                             </div>
                         </div>
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
                         <div class="d-none" id="submitSuccessMessage">
                             <div class="text-center mb-3">
                                 <div class="fw-bolder">Form submission successful!</div>
@@ -181,10 +167,6 @@
                                     href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                             </div>
                         </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
                         <div class="d-none" id="submitErrorMessage">
                             <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
@@ -277,8 +259,8 @@
         aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button"
-                        data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
                 <div class="modal-body text-center pb-5">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -462,11 +444,82 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    {{-- @section('scripts') --}}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const getCategories = () => {
+            axios.get('/api/categories')
+                .then(response => {
+                    console.log(response.data);
+                    let categories = response.data;
+                    let rawHTML = '';
+                    let categoriesList = document.getElementById('articles');
+                    // console.log(categories);
+                    categories.forEach(category => {
+                        rawHTML += `
+                        <section class="page-section portfolio" id="${category.name}">
+                            <div class="container">
+                                <!-- Portfolio Section Heading-->
+                                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">${category.name}
+                                </h2>
+                                <br>
+                                <!-- Portfolio Grid Items-->
+                                <div class="row justify-content-center" id="${category.name}">
+                                    <!-- Portfolio Item 1-->
+                                    {{-- @foreach ($articles as $news)
+                                        <div class="col-md-6 col-lg-4 mb-5">
+                                            <div class="portfolio-item mx-auto" data-bs-toggle="modal"
+                                                data-bs-target="#portfolioModal1">
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">{{ $news->name }}</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">{{ $news->author }}</h6>
+                                                        <p class="card-text">{{ $news->description }}</p>
+                                                        <a href="#" class="card-link">{{ $news->category->name }}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach --}}
+                                </div>
+                            </div>
+                        </section>
+                        `;
+                        axios.get(`/api/articles/${category.id}`)
+                            .then(response => {
+                                let articles = response.data;
+                                let rawHTML = '';
+                                let articlesList = document.getElementById(`${category.name}`);
+                                console.log(articles);
+                                articles.forEach(news => {
+                                    rawHTML += `
+                                        <div class="col-md-6 col-lg-4 mb-5">
+                                            <div class="portfolio-item mx-auto" data-bs-toggle="modal"
+                                                data-bs-target="#portfolioModal1">
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">${news.name}</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">${news.author}</h6>
+                                                        <p class="card-text">${news.description}</p>
+                                                        <a href="#" class="card-link">${news.category.name}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                });
+                                articlesList.innerHTML = rawHTML;
+                            }).catch(err => {});
+                    });
+                    categoriesList.innerHTML = rawHTML;
+                }).catch(err => {
+                    // console.log(err);
+                });
+        }
+
+        getCategories();
+    </script>
 </body>
 
 </html>
