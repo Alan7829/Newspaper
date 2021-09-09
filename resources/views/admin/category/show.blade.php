@@ -1,4 +1,4 @@
-@extends('admin.layouts.template')
+@extends('layouts.admin')
 @section('content')
     <div class="container-fluid">
         <!-- Page Heading -->

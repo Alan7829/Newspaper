@@ -42,7 +42,8 @@
                 <ul class="navbar-nav ms-auto">
                     @foreach ($categories as $category)
                         <li class="nav-item active">
-                            <a class="nav-link" href="#{{ $category->name }}">{{ $category->name }}</a>
+                            <a class="nav-link"
+                                onclick="getArticlesByCategory({{ $category->id }})">{{ $category->name }}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -63,7 +64,7 @@
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Ultimas noticias</h2>
             <br>
             <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
+            <div id="articles" class="row justify-content-center">
                 <!-- Portfolio Item 1-->
                 @foreach ($articles as $news)
                     <div class="col-md-6 col-lg-4 mb-5">
@@ -83,9 +84,9 @@
         </div>
     </section>
     <!-- Every categories -->
-    <div id="articles">
+    {{-- <div id="articles">
 
-    </div>
+    </div> --}}
 
     {{-- @foreach ($categories as $category) --}}
     {{-- <section class="page-section portfolio" id="{{ $category->name }}">
@@ -218,227 +219,11 @@
     </div>
     <!-- Portfolio Modals-->
     <!-- Portfolio Modal 1-->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                        aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis
-                                    inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod
-                                    consequuntur itaque. Nam.</p>
-                                <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
-                                    <i class="fas fa-times fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 2-->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                        aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tasty Cake</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cake.png" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis
-                                    inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod
-                                    consequuntur itaque. Nam.</p>
-                                <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
-                                    <i class="fas fa-times fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 3-->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button"
-                        data-bs-dismiss="modal" aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Circus Tent</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis
-                                    inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod
-                                    consequuntur itaque. Nam.</p>
-                                <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
-                                    <i class="fas fa-times fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 4-->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button"
-                        data-bs-dismiss="modal" aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Controller</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis
-                                    inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod
-                                    consequuntur itaque. Nam.</p>
-                                <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
-                                    <i class="fas fa-times fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 5-->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button"
-                        data-bs-dismiss="modal" aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Locked Safe</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis
-                                    inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod
-                                    consequuntur itaque. Nam.</p>
-                                <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
-                                    <i class="fas fa-times fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio Modal 6-->
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button"
-                        data-bs-dismiss="modal" aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Submarine</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png"
-                                    alt="..." />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis
-                                    inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod
-                                    consequuntur itaque. Nam.</p>
-                                <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
-                                    <i class="fas fa-times fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="modales">
+        @include('site.components.modal',[
+        'titulo' => 'Perro',
+        'descripcion' => ''
+        ])
     </div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -448,77 +233,74 @@
     {{-- @section('scripts') --}}
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        const getCategories = () => {
-            axios.get('/api/categories')
+        const getArticlesByCategory = (category_id) => {
+            console.log(category_id);
+
+            axios.get(`/api/articles/${category_id}/category`)
                 .then(response => {
-                    console.log(response.data);
-                    let categories = response.data;
-                    let rawHTML = '';
-                    let categoriesList = document.getElementById('articles');
-                    // console.log(categories);
-                    categories.forEach(category => {
-                        rawHTML += `
-                        <section class="page-section portfolio" id="${category.name}">
-                            <div class="container">
-                                <!-- Portfolio Section Heading-->
-                                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">${category.name}
-                                </h2>
-                                <br>
-                                <!-- Portfolio Grid Items-->
-                                <div class="row justify-content-center" id="${category.name}">
-                                    <!-- Portfolio Item 1-->
-                                    {{-- @foreach ($articles as $news)
-                                        <div class="col-md-6 col-lg-4 mb-5">
-                                            <div class="portfolio-item mx-auto" data-bs-toggle="modal"
-                                                data-bs-target="#portfolioModal1">
-                                                <div class="card" style="width: 18rem;">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ $news->name }}</h5>
-                                                        <h6 class="card-subtitle mb-2 text-muted">{{ $news->author }}</h6>
-                                                        <p class="card-text">{{ $news->description }}</p>
-                                                        <a href="#" class="card-link">{{ $news->category->name }}</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach --}}
+                    const articles = response.data;
+                    const articleListElement = document.getElementById('articles');
+                    const modalsElement = document.getElementById('modales');
+                    articleListElement.innerHTML = '';
+                    modalsElement.innerHTML = '';
+
+                    articles.forEach(news => {
+                        articleListElement.innerHTML += `
+                        <div class="col-md-6 col-lg-4 mb-5">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#article-${news.id}-item">
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                         <h5 class="card-title">${news.name}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">${news.author}</h6>
+                                        <p class="card-text">${news.description}</p>
+                                        <a href="#" class="card-link">${news.category.name}</a>
+                                    </div>
                                 </div>
                             </div>
-                        </section>
+                        </div>
                         `;
-                        axios.get(`/api/articles/${category.id}`)
-                            .then(response => {
-                                let articles = response.data;
-                                let rawHTML = '';
-                                let articlesList = document.getElementById(`${category.name}`);
-                                console.log(articles);
-                                articles.forEach(news => {
-                                    rawHTML += `
-                                        <div class="col-md-6 col-lg-4 mb-5">
-                                            <div class="portfolio-item mx-auto" data-bs-toggle="modal"
-                                                data-bs-target="#portfolioModal1">
-                                                <div class="card" style="width: 18rem;">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">${news.name}</h5>
-                                                        <h6 class="card-subtitle mb-2 text-muted">${news.author}</h6>
-                                                        <p class="card-text">${news.description}</p>
-                                                        <a href="#" class="card-link">${news.category.name}</a>
+
+                        modalsElement.innerHTML += `
+                        <div class="portfolio-modal modal fade" id="article-${news.id}-item" tabindex="-1" aria-labelledby="#article-${news.id}-item"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                                            aria-label="Close"></button></div>
+                                    <div class="modal-body text-center pb-5">
+                                        <div class="container">
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-8">
+                                                    <!-- Portfolio Modal - Title-->
+                                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">${ news.name }</h2>
+                                                    <!-- Icon Divider-->
+                                                    <div class="divider-custom">
+                                                        <div class="divider-custom-line"></div>
+                                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                                        <div class="divider-custom-line"></div>
                                                     </div>
+                                                    <!-- Portfolio Modal - Image-->
+                                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="..." />
+                                                    <!-- Portfolio Modal - Text-->
+                                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                        Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis
+                                                        inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod
+                                                        consequuntur itaque. Nam.</p>
+                                                    <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
+                                                        <i class="fas fa-times fa-fw"></i>
+                                                        Close Window
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                    `;
-                                });
-                                articlesList.innerHTML = rawHTML;
-                            }).catch(err => {});
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `;
                     });
-                    categoriesList.innerHTML = rawHTML;
-                }).catch(err => {
-                    // console.log(err);
-                });
+                })
         }
-
-        getCategories();
     </script>
 </body>
 
