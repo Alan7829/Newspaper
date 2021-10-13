@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('articles/{category_id}',[NewsController::class, 'getArticlesByCategory']);
+Route::get('articles/{category_id}/category',[NewsController::class, 'getArticlesByCategory']);
 Route::get('categories',[CategoryController::class, 'getCategories']);
 Route::get('article/{article_id}/comments', [CommentController::class, 'getArticleComments']);
 Route::patch('comments/{comment_id}/ban', [CommentController::class, 'banComment']);

@@ -276,11 +276,10 @@
                                                     <!-- Icon Divider-->
                                                     <div class="divider-custom">
                                                         <div class="divider-custom-line"></div>
-                                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                                         <div class="divider-custom-line"></div>
                                                     </div>
                                                     <!-- Portfolio Modal - Image-->
-                                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="..." />
+                                                    
                                                     <!-- Portfolio Modal - Text-->
                                                     <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                                         Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis
